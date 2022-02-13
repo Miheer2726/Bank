@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Transfer History {% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" >
+ <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,intial-scale=1.0">
+        <title> footer </title>
+        <link rel ="stylesheet" href="{% static 'css/style1.css' %}" >
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<style>
+
+#head
+{
+color:blue;
+}
+
+.container
+{
+   /* position:absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%); */
+    text-align:center;
+    width:150px;
+    padding:6px;
+    font-size:35px;
+    color:#000000;
+    font-family: Poppins;
+    font-weight: 400;
+    border: 5px solid #191970; 
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    cursor: pointer;
+    border-radius:40px;
+    transition:1.5s;
+} 
+
+.container:hover
+{
+    box-shadow: 0 5px 50px 0 #191970 inset, 0 5px 50px 0 #191970,
+                0 5px 50px 0 #191970 inset, 0 5px 50px 0 #191970;
+              
+}
+
+.table1 {
+ position: absolute;
+ z-index: 2;
+ left: 51%;
+ top: 35%;
+ transform: translate(-50%,-50%);
+ width: 60%; 
+ border-collapse: collapse;
+ border-spacing: 0;
+ box-shadow: 0 2px 15px rgba(64,64,64,.7);
+ border-radius: 12px 12px 0 0;
+ overflow: hidden;
+
+}
+td , th{
+ padding: 15px 15px;
+ text-align: end;
+ 
+
+}
+th{
+ background-color: #ba68c8;
+ color: #fafafa;
+ font-family: 'Poppins';
+ font-weight: 200;
+ text-transform: uppercase;
+
+}
+tr{
+ width: 100%;
+ background-color: #fafafa;
+ font-family: 'Montserrat', sans-serif;
+}
+
+tr:hover {
+        background-color: #f5f5f5;
+        transform: scale(1.02);
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    @media only screen and (max-width: 768px) {
+        table {
+            width: 90%;
+        }
+    }
+
+.table2 {
+ position: absolute;
+ z-index: 2;
+ left: 51%;
+ top: 50%;
+ transform: translate(-50%,-50%);
+ width: 60%; 
+ border-collapse: collapse;
+ border-spacing: 0;
+ box-shadow: 0 2px 15px rgba(64,64,64,.7);
+ border-radius: 12px 12px 0 0;
+ overflow: hidden;
+
+}
+td , th{
+ padding: 15px 15px;
+ text-align: center;
+ 
+
+}
+th{
+ background-color: #ba68c8;
+ color: #fafafa;
+ font-family: 'Poppins';
+ font-weight: 200;
+ text-transform: uppercase;
+
+}
+tr{
+ width: 100%;
+ background-color: #fafafa;
+ font-family: 'Montserrat', sans-serif;
+}
+
+tr:hover {
+        background-color: #f5f5f5;
+        transform: scale(1.02);
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+    }
+
+
+
+
+</style>
+
+	<form method = "POST">
+	{% csrf_token %}
+	<h1 id ="head">  Transfer History </h1>
+		<select style = "width : 400px;" name="history" id = "history" >
+		<option value = "sender" selected disabled hidden>Select customer</option>
+		{% for d in data %}
+		 	<option value = {{ d.email }}>{{ d.name }}</option>
+		{% endfor %}
+		</select>
+
+		<br><br>
+		<input type = 'submit' value = 'View' class="container">
+		<br><br>
+
+
+		{% if dumm %}
+			<h5> Debit Details </h5>
+			<table border ="3">
+			<tr align = 'center'>
+				<th> Sender </th>
+				<th> Receiver</th>
+				<th> Amount </th>
+				<th> Date and Time </th>
+				<th> Transfer Type </th>
+				<th> Status </th>
+		</tr>
+	{% endif %}
+
+		{% for da in dumm %}
+		<tr align = center>
+			<td>{{ da.send }}</td>
+			<td>{{ da.receive }}</td>
+			<td>{{ da.amount }}</td>
+			<td>{{ da.dt }}</td>
+			<td>{{ da.transtype }}</td>
+			<td> Debited </td>
+
+		</tr>	
+		{% endfor %}
+		
+
+
+</table>
+<table>
+	{% if rdumm %}
+		<h5> Credit Details </h5>
+		<table border ="3">
+		<tr align= center>
+			<th> Sender </th>
+			<th> Receiver</th>
+			<th> Amount </th>
+			<th> Date and Time </th>
+			<th> Transfer Type </th>
+			<th> Status </th>
+		</tr>
+	{% endif %}
+
+		{% for da in rdumm %}
+		<tr align = center>
+			<td>{{ da.send }}</td>
+			<td>{{ da.receive }}</td>
+			<td>{{ da.amount }}</td>
+			<td>{{ da.dt }}</td>
+			<td>{{ da.transtype }}</td>
+			<td>Credited</td>
+
+		</tr>	
+		{% endfor %}
+	
+</table>
+
+</center>
+
+
+</form>
+<center>
+{{ msg }}
+</center>
+<footer>
+                    <div class="footer-content">
+                    <h3>Sparks Bank</h3>
+                    <p> We are the most trusted Bank </p>
+                    <ul class="socials">
+                        <li><a href="https://www.facebook.com/profile.php?id=100007796760814"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-github"></i></a></li>
+						<li><a href="https://twitter.com/LALITJA26949473?s=08"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>copyright &copy;2021 Mihir Sane. designed by <span>Lalit Jain</span></p>
+        </div>
+    </footer>
+
+
+{% endblock %}

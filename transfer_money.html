@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Transfer Money {% endblock %}
+
+{% block body %}
+<head>
+<link rel="stylesheet" href="{% static 'css/style.css' %}" >
+ <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,intial-scale=1.0">
+        <title> footer </title>
+        <link rel ="stylesheet" href="{% static 'css/style1.css' %}" >
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+	<form method = "POST">
+	{% csrf_token %}
+	<h1 id ="head"> Transfer Money </h1>
+	</center>
+
+<style>
+
+#head
+{
+color:blue;
+}
+
+.center {
+text-align:center;
+display:block;
+
+}
+
+.transfer
+{
+ 
+ text-align:center;
+}
+
+.submit
+{
+text-align: center;
+}
+
+
+.container
+{
+   /* position:absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%); */
+    text-align:center;
+    width:223px;
+    padding:6px;
+    font-size:35px;
+    color:#000000;
+    font-family: Poppins;
+    font-weight: 400;
+    border: 5px solid #191970; 
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    cursor: pointer;
+    border-radius:40px;
+    transition:1.5s;
+} 
+
+.container:hover
+{
+    box-shadow: 0 5px 50px 0 #191970 inset, 0 5px 50px 0 #191970,
+                0 5px 50px 0 #191970 inset, 0 5px 50px 0 #191970;
+              
+}
+
+.transfer_type
+{
+	text-align:center;
+	
+}
+
+input:focus{
+    outline: none;
+    box-shadow: 5px 5px 5px #191970 ;
+    border-color: #191970;
+}
+
+
+input:hover {
+    border: 1px solid #191970;
+    border-radius: 5px;
+}
+
+
+</style>
+
+<div class="center">
+<select name="account_sender" id="account_from">
+  <option value="sender" selected disabled hidden>Select Sender</option>
+	{% for d in data %}
+	<option value = {{ d.email }}>{{d.name}}</option>
+	{% endfor %}	
+</select>
+<br><br>
+
+<select name="account_reciever" id="account_to">
+  <option value="receiver" selected disabled hidden>Select Recevier</option>
+	{% for d in data %}
+	<option value = {{ d.email }}>{{d.name}}</option>
+	{% endfor %}	
+</select>
+<br><br>
+</div>
+
+<div class="transfer">
+<center>
+<input type = 'number' style = "width: 290px; "name ="transfer" placeholder="Transfer Money" required>
+<br><br>
+</center>
+</div>
+
+<div class="transfer_type">
+<select name="transfer_type" id="transfer_type"  style = "width: 250px">
+  <option value="Transfer_type" selected disabled hidden>Transfer Type</option>
+  <option value="IMPS">IMPS</option>
+  <option value="NEFT">NEFT</option>
+  <option value="RTGS">RTGS</option>
+  <option value="UPI">UPI</option>
+</select>
+<br><br>
+</div>
+
+<div class="submit">
+<input type = 'submit' value = 'Transfer' class="container">
+<br><br>
+</div>
+
+
+</form>
+
+<center>
+{{ msg }}
+</center>
+<footer>
+                    <div class="footer-content">
+                    <h3>Sparks Bank </h3>
+                    <p> We are the most trusted Bank </p>
+                    <ul class="socials">
+                        <li><a href="https://www.facebook.com/profile.php?id=100007796760814"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-github"></i></a></li>
+                        <li><a href="https://twitter.com/LALITJA26949473?s=08"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>copyright &copy;2021 Mihir Sane. designed by <span>Lalit Jain</span></p>
+        </div>
+    </footer>
+
+
+
+
+
+
+{% endblock %}
