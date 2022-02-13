@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title>{% block title %} {% endblock %}</title>
+	<style>
+		*{font-size : 35px;font-family: 'Poppins',sans-serif;}
+			.nav{background-color : black}
+		.nav a{color : white;text-decoration : none;padding : 20px}
+	</style>
+</head>
+
+<body>
+<center>
+	
+	<div class = 'nav'>
+		{% if user.is_authenticated %}
+			<a href = "{% url 'about' %}" >About</a>
+			<a href = "{% url 'add_customer' %}">Add Customer</a>
+			<a href = "{% url 'view_customer' %}">View Customer</a>
+			<a href = "{% url 'transfer_money' %}">Transfer Money</a>
+			<a href = "{% url 'transfer_history' %}">Transfer History</a>
+			<a href = "{% url 'logout' %}">Log Out</a>
+			
+		{% else %}
+			<a href = "{% url 'login' %}" >LogIn</a>
+		{% endif %}
+	</div>	
+	{% block body %}
+	{% endblock %}
+</center>
+</body>
+</html>

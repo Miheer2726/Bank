@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Add Customer {% endblock %}
+
+{% block body %}
+<head>
+<link rel="stylesheet" href="{% static 'css/style.css' %}" >
+ <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,intial-scale=1.0">
+        <title> footer </title>
+        <link rel ="stylesheet" href="{% static 'css/style1.css' %}" >
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+	<form method = "POST">
+	{% csrf_token %}
+	<h1 id ="head"> Add Customer </h1>
+<style>
+#head
+{
+color:blue;
+}
+
+
+.container
+{
+   /* position:absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%); */
+    text-align:center;
+    width:200px;
+    padding:6px;
+    font-size:35px;
+    color:#000000;
+    font-family: Poppins;
+    font-weight: 400;
+    border: 5px solid #191970; 
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    cursor: pointer;
+    border-radius:50px;
+    transition:1.5s;
+} 
+
+.container:hover
+{
+    box-shadow: 0 5px 50px 0 #191970 inset, 0 5px 50px 0 #191970,
+                0 5px 50px 0 #191970 inset, 0 5px 50px 0 #191970;
+              
+}
+
+input:focus{
+    outline: none;
+    box-shadow: 5px 5px 5px #191970;
+    border-color:#191970;
+}
+
+
+input:hover {
+    border: 1px solid #191970;
+    border-radius: 5px;
+}
+
+
+
+</style>
+
+<input type = 'text' name ="user" placeholder="Enter name"  pattern="^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)" required>
+<br><br>
+<input type = 'text' name="pn" placeholder = "Enter Mobile Number" pattern="^\d{10}$" required >
+<br><br>
+<input type = 'email' name ="em" placeholder="Enter email address" required>
+<br><br>
+<input type = 'number' name ="bal" placeholder="Enter Amount" required min=1>
+<br><br>
+<div class="button1">
+<input type = 'submit' name ="sub" placeholder="Save" class="container" required>
+<br><br>
+</div>
+
+</form>
+{{ msg }}
+<footer>
+                    <div class="footer-content">
+                    <h3>Sparks Bank</h3>
+                    <p> We are the most trusted Bank </p>
+                    <ul class="socials">
+                        <li><a href="https://www.facebook.com/profile.php?id=100007796760814"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-github"></i></a></li>
+                        <li><a href="https://twitter.com/LALITJA26949473?s=08"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>copyright &copy;2021 Mihir Sane. designed by <span>Lalit Jain</span></p>
+        </div>
+    </footer>
+
+
+
+
+{% endblock %}
